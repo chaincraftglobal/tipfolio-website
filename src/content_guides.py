@@ -140,6 +140,21 @@ def build():
          "so its value depends on owing federal income tax in the first place. A large "
          "share of tipped workers already owe little or none, and for them the practical "
          "benefit can be small or zero."),
+        ("Does it phase out at higher incomes?",
+         f"Yes. Above {TAX['phaseout_single_display']} of modified adjusted gross income "
+         f"({TAX['phaseout_joint_display']} on a joint return) the deduction is reduced by "
+         "$100 for every full $1,000 you are over, and it reaches zero at $400,000 single or "
+         "$550,000 jointly. Most tipped workers are well below the threshold; joint returns "
+         "where one partner earns well are the case that catches people out."),
+        ("Is the $25,000 cap per person or per return?",
+         "Per return. The final regulations say the deduction shall not exceed $25,000 "
+         "regardless of filing status, so a couple who both work for tips and file jointly "
+         "share one $25,000 between them rather than having one each."),
+        ("Does my job have to be on a list?",
+         f"Yes. Treasury published a closed list of {TAX['occupation_count']} tipped "
+         "occupations, each with a three-digit Treasury Tipped Occupation Code. The list is "
+         "exhaustive — if your occupation is not on it, the deduction is not available to "
+         "you, however customary tipping is in your line of work."),
         ("What records do I need?",
          "A daily record of tips received, kept as you earn them. The IRS has long expected "
          "tipped employees to keep a daily tip record; the value of a contemporaneous log "
@@ -224,12 +239,38 @@ def build():
       and deductions, payroll taxes and your state entirely.</p>
       <p><a href="/calculators/tip-tax-deduction/">Run it through the estimator →</a></p>
 
+      <h2>Four limits people miss</h2>
+
+      <h3>1. The cap is per return, not per person</h3>
+      <p>The final regulations say the deduction <em>"shall not exceed
+      {TAX['cap_display']}, regardless of filing status"</em>. If you and your partner both
+      work for tips and file jointly, you share <strong>one</strong> {TAX['cap_display']}
+      between you.</p>
+
+      <h3>2. It phases out with income</h3>
+      <p>Above {TAX['phaseout_single_display']} of modified adjusted gross income
+      ({TAX['phaseout_joint_display']} on a joint return), the deduction is reduced by
+      <strong>$100 for every full $1,000</strong> you are over — never below zero. On a full
+      {TAX['cap_display']} deduction it is gone by $400,000 single, $550,000 jointly.</p>
+      <p>Most tipped workers are far below that. The case that catches people is a joint
+      return where one partner earns well.</p>
+
+      <h3>3. It is income tax only</h3>
+      <p>Payroll taxes are untouched. Social Security and Medicare still come out of every
+      tipped dollar, and your state may tax them too. "No tax on tips" describes something
+      that does not exist — this is a federal income tax deduction, nothing more.</p>
+
+      <h3>4. Your occupation has to be on the list</h3>
+      <p>Treasury published a <strong>closed list of {TAX['occupation_count']} tipped
+      occupations</strong>, each with a three-digit Treasury Tipped Occupation Code, in eight
+      categories from food service to transportation. It is exhaustive: if your job is not on
+      it, the deduction is not available to you, however customary tipping is in your trade.</p>
+
       <h2>Before you rely on any of this</h2>
-      <p>The cap, the eligible years, the definition of a qualified tip and the treatment of
-      tip-outs are the four things everything above rests on. Rules change, and how they
-      apply depends on your circumstances. Check the current position against
-      <em>{TAX['citation']}</em> and current IRS guidance, and talk to a qualified tax
-      professional about your own situation.</p>
+      <p>The figures above were checked against IRS guidance and the final regulations under
+      IRC §224 in August 2026. But rules change, and how they apply depends on your own
+      circumstances — talk to a qualified tax professional rather than acting on an article.
+      Primary sources: <em>{TAX['citation']}</em>.</p>
       <p>What is not in dispute, and what you can act on today, is the record. Whatever the
       rules turn out to be in April, a year of dated daily entries puts you in a better
       position than a shoebox.</p>
@@ -244,9 +285,10 @@ def build():
                      body,
                      takeaway=takeaways([
                          f"A <strong>deduction of up to {TAX['cap_display']} a year</strong> on qualified tips, for tax years {TAX['years']}. Not a blanket exemption.",
-                         "Tips remain income. You still report them, and payroll taxes still apply.",
-                         "<strong>Voluntary</strong> tips generally qualify; mandatory service charges generally do not.",
-                         "If you owe little federal income tax, a deduction has little to reduce — it does not help everyone equally.",
+                         f"The cap is <strong>per tax return</strong>, not per person — a couple filing jointly share one {TAX['cap_display']}.",
+                         "It cuts <strong>federal income tax only</strong>. Social Security and Medicare still apply to every dollar of tips.",
+                         f"It <strong>phases out</strong> above {TAX['phaseout_single_display']} of income ({TAX['phaseout_joint_display']} jointly) — $100 gone per $1,000 over.",
+                         f"Your job must be on Treasury's <strong>closed list of {TAX['occupation_count']} occupations</strong>. Not on it, not eligible.",
                          "It depends on a <strong>contemporaneous daily record</strong>, which is the part that actually takes effort.",
                      ]),
                      faq=faq_html(faq))

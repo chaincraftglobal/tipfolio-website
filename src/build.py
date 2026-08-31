@@ -36,12 +36,27 @@ SITE = "https://tipfolio.app"
 TAX = {
     "cap": 25_000,
     "cap_display": "$25,000",
+    # The cap is per RETURN, regardless of filing status - two tipped workers
+    # filing jointly share one $25,000, not two. Copy must never imply per person.
+    "cap_is_per_return": True,
     "years": "2025–2028",
     "year_start": 2025,
     "year_end": 2028,
     "net_of_tipout": True,
     "savings_rate": 0.22,
-    "citation": "IRS Publication 531, Reporting Tip Income",
+    # IRC 224 phase-out: the deduction is reduced (but not below zero) by $100
+    # for each $1,000 of MAGI above the threshold. On a full $25,000 deduction
+    # that reaches zero at $400,000 single / $550,000 joint.
+    "phaseout_single": 150_000,
+    "phaseout_joint": 300_000,
+    "phaseout_increment": 1_000,
+    "phaseout_reduction": 100,
+    "phaseout_single_display": "$150,000",
+    "phaseout_joint_display": "$300,000",
+    # The deduction reduces federal INCOME tax only. Payroll taxes are untouched.
+    "reduces_payroll_tax": False,
+    "occupation_count": 71,
+    "citation": "IRS Publication 531 and the final regulations under IRC §224",
     "disclaimer": (
         "Tipfolio helps you keep records. It is not tax advice. Consult a "
         "qualified tax professional and verify current IRS rules before filing."

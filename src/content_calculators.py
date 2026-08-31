@@ -436,7 +436,11 @@ def build():
 
 <section style="padding-top:30px">
   <div class="wrap">
-    <div class="calc" id="calc-deduction" data-cap="{TAX['cap']}">
+    <div class="calc" id="calc-deduction" data-cap="{TAX['cap']}"
+         data-phaseout-single="{TAX['phaseout_single']}"
+         data-phaseout-joint="{TAX['phaseout_joint']}"
+         data-phaseout-increment="{TAX['phaseout_increment']}"
+         data-phaseout-reduction="{TAX['phaseout_reduction']}">
       <form class="calc-form" onsubmit="return false">
         {NOSCRIPT}
         <div class="field">
@@ -460,7 +464,21 @@ def build():
           <input type="number" id="td-shifts" inputmode="decimal" min="0" step="1" value="200">
         </div>
         <div class="field">
-          <label for="td-rate">Your marginal federal rate
+          <label>How do you file?</label>
+          <div class="segmented" role="radiogroup" aria-label="Filing status">
+            <label><input type="radio" name="filing" value="single" checked><span>Single</span></label>
+            <label><input type="radio" name="filing" value="joint"><span>Married, jointly</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="td-magi">Household income for the year
+            <span class="hint">Modified adjusted gross income — everything, not just tips.
+              The deduction starts shrinking above {TAX['phaseout_single_display']}
+              ({TAX['phaseout_joint_display']} filing jointly). Leave 0 if you are well under.</span></label>
+          <input type="number" id="td-magi" inputmode="decimal" min="0" step="1000" value="0">
+        </div>
+        <div class="field">
+          <label for="td-rate">Your marginal federal income tax rate
             <span class="hint">A labelled assumption, not a lookup. If you don't know it, {int(TAX['savings_rate']*100)}% is a common bracket.</span></label>
           <input type="number" id="td-rate" inputmode="decimal" min="0" max="50" step="1" value="{int(TAX['savings_rate']*100)}">
         </div>
@@ -474,17 +492,20 @@ def build():
           <li><span>Tips for the year</span><b id="td-gross">$0</b></li>
           <li><span>Tip-out paid</span><b id="td-out">$0</b></li>
           <li><span>Qualified tips</span><b id="td-qualified">$0</b></li>
-          <li><span>Annual cap</span><b id="td-cap">$0</b></li>
-          <li class="total"><span>Illustrative saving at <span id="td-rate-echo">22%</span></span><b id="td-saving">$0</b></li>
+          <li><span>Annual cap (per return)</span><b id="td-cap">$0</b></li>
+          <li id="td-phaseout-row" hidden><span>Income phase-out</span><b id="td-phaseout">$0</b></li>
+          <li class="total"><span>Illustrative federal income tax saving at <span id="td-rate-echo">22%</span></span><b id="td-saving">$0</b></li>
         </ul>
         <p class="calc-warn" id="td-warn-cap" hidden>You are above the cap. Tips beyond it
           do not add to the deduction — but they still belong in your log.</p>
+        <p class="calc-warn" id="td-warn-phaseout" hidden>Your income is above the phase-out
+          threshold, so part of the deduction is taken back — $100 for every $1,000 over.</p>
         {PRIVACY_NOTE}
       </div>
     </div>
     {disclaimer("The saving line is an illustration at a rate you chose. It is not a "
-                "prediction of your refund, and it ignores filing status, other income, "
-                "other deductions, payroll tax and state tax entirely.")}
+                "prediction of your refund, and it ignores your other deductions, "
+                "payroll tax and state tax entirely.")}
   </div>
 </section>
 

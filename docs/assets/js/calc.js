@@ -129,12 +129,30 @@
 
   /* ================== 3. Tip tax deduction estimator ===================== */
   if (document.getElementById('calc-deduction')) {
-    var CAP = cents(document.getElementById('calc-deduction').dataset.cap);
+    var root = document.getElementById('calc-deduction');
+    var CAP = cents(root.dataset.cap);
+    var PO_SINGLE = cents(root.dataset.phaseoutSingle);
+    var PO_JOINT = cents(root.dataset.phaseoutJoint);
+    var PO_STEP = cents(root.dataset.phaseoutIncrement);
+    var PO_CUT = cents(root.dataset.phaseoutReduction);
+
+    // IRC 224: reduced (but not below zero) by $100 for each FULL $1,000 of
+    // MAGI above the threshold. A partial increment reduces nothing, so this
+    // floors rather than rounds - rounding up would overstate the reduction.
+    var phaseOutCut = function (magiC, joint) {
+      var threshold = joint ? PO_JOINT : PO_SINGLE;
+      var excess = magiC - threshold;
+      if (!(excess > 0) || !(PO_STEP > 0)) return 0;
+      return Math.floor(excess / PO_STEP) * PO_CUT;
+    };
+
     var dedRun = function () {
       var period  = checked('period') || 'year';
       var amountC = cents(val('td-tips'));
       var outC    = cents(val('td-tipout'));
       var rate    = num(val('td-rate'));
+      var magiC   = cents(val('td-magi'));
+      var joint   = (checked('filing') || 'single') === 'joint';
 
       var mult = period === 'week' ? 52 : period === 'month' ? 12 : period === 'shift' ? 0 : 1;
       var shifts = num(val('td-shifts'));
@@ -144,24 +162,33 @@
       var yearOutC   = Math.round(outC * mult);
       // TaxEngine: qualified tips are net of tip-out under the app's config.
       var qualifiedC = Math.max(0, yearGrossC - yearOutC);
-      var deductC    = Math.min(qualifiedC, CAP);
-      var overC      = Math.max(0, qualifiedC - deductC);
+      var cappedC    = Math.min(qualifiedC, CAP);
+      var overC      = Math.max(0, qualifiedC - cappedC);
+      var cutC       = phaseOutCut(magiC, joint);
+      var deductC    = Math.max(0, cappedC - cutC);
       var savingC    = Math.round(deductC * rate / 100);
 
       set('td-headline', money0(deductC));
-      set('td-sub', overC > 0
-        ? 'Capped. ' + money0(overC) + ' of qualified tips sits above the limit.'
-        : 'Deductible, based on what you entered.');
+      set('td-sub', deductC === 0 && cutC > 0
+        ? 'Your income phases the deduction out entirely.'
+        : cutC > 0
+          ? 'Reduced by ' + money0(cutC) + ' because of your income.'
+          : overC > 0
+            ? 'Capped. ' + money0(overC) + ' of qualified tips sits above the limit.'
+            : 'Deductible, based on what you entered.');
       set('td-gross', money0(yearGrossC));
       set('td-out', yearOutC ? '−' + money0(yearOutC) : money0(0));
       set('td-qualified', money0(qualifiedC));
       set('td-cap', money0(CAP));
+      set('td-phaseout', cutC ? '−' + money0(cutC) : money0(0));
       set('td-saving', money0(savingC));
       set('td-rate-echo', rate + '%');
       show('td-warn-cap', overC > 0);
+      show('td-warn-phaseout', cutC > 0);
+      show('td-phaseout-row', cutC > 0);
       show('td-shifts-field', period === 'shift');
     };
-    bind(['td-tips', 'td-tipout', 'td-rate', 'td-shifts'], dedRun);
+    bind(['td-tips', 'td-tipout', 'td-rate', 'td-shifts', 'td-magi'], dedRun);
   }
 
   /* =================== 4. Shift earnings calculator ====================== */
