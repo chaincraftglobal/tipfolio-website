@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shift Earnings Calculator for Servers &amp; Bartenders</title>
+<meta name="description" content="Add up a week of shifts with tip-outs and base wage handled properly, and see the blended hourly rate across all of them. Free, and nothing leaves your browser.">
+<link rel="canonical" href="https://tipfolio.app/calculators/shift-earnings/">
+<meta name="theme-color" content="#F7F4EE">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tipfolio">
+<meta property="og:url" content="https://tipfolio.app/calculators/shift-earnings/">
+<meta property="og:title" content="Shift Earnings Calculator for Servers &amp; Bartenders">
+<meta property="og:description" content="Add up a week of shifts with tip-outs and base wage handled properly, and see the blended hourly rate across all of them. Free, and nothing leaves your browser.">
+<meta property="og:image" content="https://tipfolio.app/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/favicon.svg">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tipfolio.app/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://tipfolio.app/calculators/"},{"@type":"ListItem","position":3,"name":"Shift earnings"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/img/favicon.svg" width="34" height="34" alt=""><span class="brand-name">Tipfolio</span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="/features/">Features</a><a href="/guides/">Guides</a><a href="/calculators/" class="is-active">Calculators</a><a href="/pricing/">Pricing</a><a href="/support/">Support</a>
+      <span class="btn btn-primary" aria-disabled="true">Get the app</span>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/calculators/">Calculators</a></li><li aria-current="page">Shift earnings</li></ol></nav>
+
+<section class="article">
+  <div class="wrap">
+    <div class="article-head">
+      <p class="eyebrow green">Free calculator</p>
+      <h1>Shift earnings calculator</h1>
+      <p class="lede">Add up a week of shifts with base wage and tip-outs handled properly,
+        and get the blended rate across all of them — not an average of averages.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:30px">
+  <div class="wrap">
+    <div class="calc" id="calc-shift">
+      <form class="calc-form" onsubmit="return false">
+        <noscript><p class="noscript-note">This calculator runs entirely in your browser, so it needs JavaScript switched on. Nothing you type is sent anywhere either way.</p></noscript>
+        <div class="field">
+          <label for="se-wage">Base hourly wage <span class="hint">Applied to every shift below. Enter 0 if you have none.</span></label>
+          <input type="number" id="se-wage" inputmode="decimal" min="0" step="0.01" value="7.25">
+        </div>
+        <p class="eyebrow green" style="margin:22px 0 10px">Your shifts</p>
+        
+        <div class="field-row" data-shift-row style="align-items:end;grid-template-columns:1fr 1fr 1fr auto;gap:10px">
+          <div class="field" style="margin-bottom:10px">
+            <label for="s-tips-1">Tips</label>
+            <input class="s-tips" id="s-tips-1" type="number" inputmode="decimal" min="0" step="0.01"
+                   placeholder="0" aria-label="Shift 1 tips" value="240">
+          </div>
+          <div class="field" style="margin-bottom:10px">
+            <label for="s-out-1">Tip-out</label>
+            <input class="s-out" id="s-out-1" type="number" inputmode="decimal" min="0" step="0.01"
+                   placeholder="0" aria-label="Shift 1 tip-out" value="48">
+          </div>
+          <div class="field" style="margin-bottom:10px">
+            <label for="s-hours-1">Hours</label>
+            <input class="s-hours" id="s-hours-1" type="number" inputmode="decimal" min="0" step="0.25"
+                   placeholder="0" aria-label="Shift 1 hours" value="7.5">
+          </div>
+          <div style="padding-bottom:20px;min-width:120px;text-align:right">
+            <span class="s-result small" style="font-family:var(--display);font-weight:700;color:var(--ink)">—</span>
+          </div>
+        </div>
+        <div class="field-row" data-shift-row style="align-items:end;grid-template-columns:1fr 1fr 1fr auto;gap:10px">
+          <div class="field" style="margin-bottom:10px">
+            
+            <input class="s-tips" id="s-tips-2" type="number" inputmode="decimal" min="0" step="0.01"
+                   placeholder="0" aria-label="Shift 2 tips" value="185">
+          </div>
+          <div class="field" style="margin-bottom:10px">
+            
+            <input class="s-out" id="s-out-2" type="number" inputmode="decimal" min="0" step="0.01"
+                   placeholder="0" aria-label="Shift 2 tip-out" value="37">
+          </div>
+          <div class="field" style="margin-bottom:10px">
+            
+            <input class="s-hours" id="s-hours-2" type="number" inputmode="decimal" min="0" step="0.25"
+                   placeholder="0" aria-label="Shift 2 hours" value="6">
+          </div>
+          <div style="padding-bottom:20px;min-width:120px;text-align:right">
+            <span class="s-result small" style="font-family:var(--display);font-weight:700;color:var(--ink)">—</span>
+          </div>
+        </div>
+        <div class="field-row" data-shift-row style="align-items:end;grid-template-columns:1fr 1fr 1fr auto;gap:10px">
+          <div class="field" style="margin-bottom:10px">
+            
+            <input class="s-tips" id="s-tips-3" type="number" inputmode="decimal" min="0" step="0.01"
+                   placeholder="0" aria-label="Shift 3 tips" value="310">
+          </div>
+          <div class="field" style="margin-bottom:10px">
+            
+            <input class="s-out" id="s-out-3" type="number" inputmode="decimal" min="0" step="0.01"
+                   placeholder="0" aria-label="Shift 3 tip-out" value="62">
+          </div>
+          <div class="field" style="margin-bottom:10px">
+            
+            <input class="s-hours" id="s-hours-3" type="number" inputmode="decimal" min="0" step="0.25"
+                   placeholder="0" aria-label="Shift 3 hours" value="8.5">
+          </div>
+          <div style="padding-bottom:20px;min-width:120px;text-align:right">
+            <span class="s-result small" style="font-family:var(--display);font-weight:700;color:var(--ink)">—</span>
+          </div>
+        </div>
+        <div class="field-row" data-shift-row style="align-items:end;grid-template-columns:1fr 1fr 1fr auto;gap:10px">
+          <div class="field" style="margin-bottom:10px">
+            
+            <input class="s-tips" id="s-tips-4" type="number" inputmode="decimal" min="0" step="0.01"
+                   placeholder="0" aria-label="Shift 4 tips" value="">
+          </div>
+          <div class="field" style="margin-bottom:10px">
+            
+            <input class="s-out" id="s-out-4" type="number" inputmode="decimal" min="0" step="0.01"
+                   placeholder="0" aria-label="Shift 4 tip-out" value="">
+          </div>
+          <div class="field" style="margin-bottom:10px">
+            
+            <input class="s-hours" id="s-hours-4" type="number" inputmode="decimal" min="0" step="0.25"
+                   placeholder="0" aria-label="Shift 4 hours" value="">
+          </div>
+          <div style="padding-bottom:20px;min-width:120px;text-align:right">
+            <span class="s-result small" style="font-family:var(--display);font-weight:700;color:var(--ink)">—</span>
+          </div>
+        </div>
+        <div class="field-row" data-shift-row style="align-items:end;grid-template-columns:1fr 1fr 1fr auto;gap:10px">
+          <div class="field" style="margin-bottom:10px">
+            
+            <input class="s-tips" id="s-tips-5" type="number" inputmode="decimal" min="0" step="0.01"
+                   placeholder="0" aria-label="Shift 5 tips" value="">
+          </div>
+          <div class="field" style="margin-bottom:10px">
+            
+            <input class="s-out" id="s-out-5" type="number" inputmode="decimal" min="0" step="0.01"
+                   placeholder="0" aria-label="Shift 5 tip-out" value="">
+          </div>
+          <div class="field" style="margin-bottom:10px">
+            
+            <input class="s-hours" id="s-hours-5" type="number" inputmode="decimal" min="0" step="0.25"
+                   placeholder="0" aria-label="Shift 5 hours" value="">
+          </div>
+          <div style="padding-bottom:20px;min-width:120px;text-align:right">
+            <span class="s-result small" style="font-family:var(--display);font-weight:700;color:var(--ink)">—</span>
+          </div>
+        </div>
+      </form>
+
+      <div class="calc-result" aria-live="polite">
+        <p class="eyebrow">Total take-home</p>
+        <p class="headline" id="se-headline">$0.00</p>
+        <p class="headline-sub" id="se-sub">Fill in a shift to see your total</p>
+        <ul class="calc-lines">
+          <li><span>Tips kept, after tip-out</span><b id="se-net">$0.00</b></li>
+          <li><span>Base wage earned</span><b id="se-wage-earned">$0.00</b></li>
+          <li><span>Hours worked</span><b id="se-hours">0 h</b></li>
+          <li class="total"><span>Blended real rate</span><b id="se-rate">—</b></li>
+        </ul>
+        <p class="calc-note">Everything above is worked out in your browser. Nothing you type is uploaded, stored or logged — there is no server behind this page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:44px">
+  <div class="wrap narrow">
+    <div class="prose" style="margin-top:0">
+      <h2>Why "blended" and not "average"</h2>
+      <p>If you take the rate from each shift and average those rates, a two-hour lunch
+        counts exactly as much as a ten-hour Saturday. That is almost never what you want,
+        and it systematically flatters short shifts — which tend to look better per hour
+        because the slow first hour is a smaller share of them.</p>
+      <p>The blended rate adds all the take-home, adds all the hours, and divides once:</p>
+      <blockquote><p><strong>blended rate = total take-home ÷ total hours</strong></p></blockquote>
+      <p>It is the number that answers "what does a week of this job actually pay me per
+        hour of my life", which is the question worth asking.</p>
+
+      <h2>What counts as take-home here</h2>
+      <table>
+        <thead><tr><th>Line</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td>Tips</td><td>Everything you were tipped, cash and card, before anything comes out.</td></tr>
+          <tr><td>Tip-out</td><td>What you handed to bar, bussers, runners and hosts. Capped at your tips.</td></tr>
+          <tr><td>Base wage earned</td><td>Your cash wage × the hours on that shift.</td></tr>
+          <tr><td><strong>Take-home</strong></td><td><strong>Tips kept + base wage earned.</strong></td></tr>
+        </tbody>
+      </table>
+      <p>Note what is deliberately <em>not</em> here: taxes, withholding and payroll
+        deductions. This is gross take-home from the shift, which is the right basis for
+        comparing shifts against each other. What lands in your account after withholding is
+        a separate question and depends on your whole tax picture.</p>
+
+      <div class="callout">
+        <p><strong>Use it to answer a real question.</strong> Enter a typical week from one
+          job, then a typical week from another. The blended rate is the only fair way to
+          compare them once tip-outs, base wages and shift lengths all differ — and it is
+          often not the answer people expect.</p>
+      </div>
+
+      <h2>A week is a sample, not the truth</h2>
+      <p>One week tells you about that week. Seasonality, section assignment, the weather and
+        one big party can move a week's blended rate by a third. If you are making a
+        decision — taking a job, dropping a shift, asking for a section — you want months,
+        not days. That is the case for logging as you go rather than reconstructing later.
+        <a href="/guides/how-to-track-tips/">How to keep that record →</a></p>
+      <div class="disclaimer">Tipfolio helps you keep records. It is not tax advice. Consult a qualified tax professional and verify current IRS rules before filing.</div>
+    </div>
+  </div>
+</section>
+
+<section class="related"><div class="wrap narrow"><h2>Keep reading</h2><ul class="related-list"><li><a href="/calculators/real-hourly-rate/"><strong>Real hourly rate calculator</strong><span>One shift, in detail, with the tip-out rule applied.</span></a></li><li><a href="/calculators/tip-out/"><strong>Tip-out calculator</strong><span>Work out the tip-out figure to put in the rows above.</span></a></li><li><a href="/guides/proof-of-income-for-tipped-workers/"><strong>Proof of income for tipped workers</strong><span>Turning weeks like these into something a landlord accepts.</span></a></li></ul></div></section>
+
+<section class="cta-band"><div class="wrap">
+  <div class="band">
+    <div class="band-grid">
+      <div>
+        <h2>Five rows is a week. Tipfolio holds the year.</h2>
+        <p style="margin-top:14px">Log each shift as it happens and the blended rate, the weekday pattern and the annual totals come free — from your own entries, on your own phone.</p>
+      </div>
+      <div class="band-cta"><span class="btn btn-onDark" aria-disabled="true">Coming soon to the App Store</span>
+        <p class="small" style="color:rgba(255,255,255,.7);margin-top:14px">
+          iPhone · No account required · Your earnings never leave the device</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/"><img src="/assets/img/favicon.svg" width="34" height="34" alt=""><span class="brand-name">Tipfolio</span></a>
+        <p class="small">The tip log for people who actually work for tips.
+           On your iPhone, with no server for your earnings.</p>
+        <p class="small" style="margin-top:12px">Lacewing Technologies LLC<br>30 N Gould St, Ste N, Sheridan, WY 82801, United States</p>
+      </div>
+      <div><h4>Product</h4><ul><li><a href="/features/">Features</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/about/">About</a></li><li><a href="/support/">Support</a></li></ul></div><div><h4>Free tools</h4><ul><li><a href="/calculators/tip-out/">Tip-out calculator</a></li><li><a href="/calculators/real-hourly-rate/">Real hourly rate</a></li><li><a href="/calculators/tip-tax-deduction/">Tip tax deduction</a></li><li><a href="/calculators/shift-earnings/">Shift earnings</a></li></ul></div><div><h4>Guides</h4><ul><li><a href="/guides/no-tax-on-tips/">No Tax on Tips, explained</a></li><li><a href="/guides/how-to-track-tips/">How to track your tips</a></li><li><a href="/guides/reporting-cash-tips/">Reporting cash tips</a></li><li><a href="/guides/">All guides</a></li></ul></div><div><h4>Who it's for</h4><ul><li><a href="/for/servers/">Servers</a></li><li><a href="/for/bartenders/">Bartenders</a></li><li><a href="/for/baristas/">Baristas</a></li><li><a href="/for/delivery-drivers/">Delivery drivers</a></li><li><a href="/for/hairstylists/">Hairstylists &amp; barbers</a></li></ul></div><div><h4>Legal</h4><ul><li><a href="/privacy/">Privacy policy</a></li><li><a href="/terms/">Terms of service</a></li><li><a href="mailto:support@tipfolio.app">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Lacewing Technologies LLC. All rights reserved.</span>
+      <span>Tipfolio is not a tax advisor. Not affiliated with the IRS or Apple.</span>
+    </div>
+  </div>
+</footer>
+<script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/calc.js" defer></script>
+</body>
+</html>

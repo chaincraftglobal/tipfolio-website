@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Real Hourly Rate Calculator for Tipped Workers</title>
+<meta name="description" content="Free calculator for servers and bartenders: tips minus tip-out, plus base wage, over the hours you actually worked. See what a shift really paid.">
+<link rel="canonical" href="https://tipfolio.app/calculators/real-hourly-rate/">
+<meta name="theme-color" content="#F7F4EE">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tipfolio">
+<meta property="og:url" content="https://tipfolio.app/calculators/real-hourly-rate/">
+<meta property="og:title" content="Real Hourly Rate Calculator for Tipped Workers">
+<meta property="og:description" content="Free calculator for servers and bartenders: tips minus tip-out, plus base wage, over the hours you actually worked. See what a shift really paid.">
+<meta property="og:image" content="https://tipfolio.app/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/favicon.svg">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do you calculate a server's real hourly rate?","acceptedAnswer":{"@type":"Answer","text":"Take your tips, subtract the tip-out you paid, add your base wage multiplied by the hours you worked, then divide the whole thing by those hours. In short: (net tips + base wage x hours) / hours. Most people skip the tip-out and use scheduled hours instead of actual, and both mistakes inflate the answer."}},{"@type":"Question","name":"Should I use scheduled hours or the hours I actually worked?","acceptedAnswer":{"@type":"Answer","text":"Actual. Side work, a late cut, and the forty minutes rolling silverware after close are all hours your earnings have to stretch across. Using scheduled hours flatters the number and makes it useless for comparing one job to another."}},{"@type":"Question","name":"Is my real hourly rate what I should tell a landlord?","acceptedAnswer":{"@type":"Answer","text":"It is a useful number, but a landlord or lender usually wants total earnings over a period rather than a rate. What they will not accept is a figure with nothing behind it, which is why a dated log matters more than any single number."}},{"@type":"Question","name":"Why is my real rate lower than I expected?","acceptedAnswer":{"@type":"Answer","text":"Usually one of three things: tip-out was not subtracted, unpaid or unrecorded hours were left out, or a couple of strong nights were quietly standing in for a typical one. A blended rate across many shifts is the honest version."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tipfolio.app/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://tipfolio.app/calculators/"},{"@type":"ListItem","position":3,"name":"Real hourly rate"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/img/favicon.svg" width="34" height="34" alt=""><span class="brand-name">Tipfolio</span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="/features/">Features</a><a href="/guides/">Guides</a><a href="/calculators/" class="is-active">Calculators</a><a href="/pricing/">Pricing</a><a href="/support/">Support</a>
+      <span class="btn btn-primary" aria-disabled="true">Get the app</span>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/calculators/">Calculators</a></li><li aria-current="page">Real hourly rate</li></ol></nav>
+
+<section class="article">
+  <div class="wrap">
+    <div class="article-head">
+      <p class="eyebrow green">Free calculator</p>
+      <h1>Real hourly rate calculator</h1>
+      <p class="lede">Tips, minus tip-outs, plus your base wage, divided by the hours you
+        actually worked. It is the only number that lets you compare one shift, one job, or
+        one night of the week against another.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:30px">
+  <div class="wrap">
+    <div class="calc" id="calc-rate">
+      <form class="calc-form" onsubmit="return false">
+        <noscript><p class="noscript-note">This calculator runs entirely in your browser, so it needs JavaScript switched on. Nothing you type is sent anywhere either way.</p></noscript>
+        <div class="field-row">
+          <div class="field">
+            <label for="hr-tips">Tips <span class="hint">Before tip-out.</span></label>
+            <input type="number" id="hr-tips" inputmode="decimal" min="0" step="0.01" value="240">
+          </div>
+          <div class="field">
+            <label for="hr-hours">Hours worked <span class="hint">Actual, not scheduled.</span></label>
+            <input type="number" id="hr-hours" inputmode="decimal" min="0" step="0.25" value="7.5">
+          </div>
+        </div>
+        <div class="field">
+          <label for="hr-wage">Base hourly wage <span class="hint">Your cash wage before tips. Enter 0 if you have none.</span></label>
+          <input type="number" id="hr-wage" inputmode="decimal" min="0" step="0.01" value="7.25">
+        </div>
+        <div class="field">
+          <label>Tip-out basis</label>
+          <div class="segmented" role="radiogroup" aria-label="Tip-out basis">
+            <label><input type="radio" name="basis" value="tips" checked><span>% of tips</span></label>
+            <label><input type="radio" name="basis" value="sales"><span>% of sales</span></label>
+            <label><input type="radio" name="basis" value="flat"><span>Flat</span></label>
+          </div>
+        </div>
+        <div class="field" id="hr-sales-field" hidden>
+          <label for="hr-sales">Total sales</label>
+          <input type="number" id="hr-sales" inputmode="decimal" min="0" step="0.01" value="1800">
+        </div>
+        <div class="field">
+          <label for="hr-rate"><span id="hr-rate-label">Tip-out, percent of tips</span>
+            <span class="hint">Enter <span id="hr-rate-unit">%</span>. Use 0 if you don't tip out.</span></label>
+          <input type="number" id="hr-rate" inputmode="decimal" min="0" step="0.1" value="20">
+        </div>
+      </form>
+
+      <div class="calc-result" aria-live="polite">
+        <p class="eyebrow">Your real rate</p>
+        <p class="headline" id="hr-headline">—</p>
+        <p class="headline-sub" id="hr-sub">Enter your hours to see a rate</p>
+        <ul class="calc-lines" id="hr-lines">
+          <li><span>Gross tips</span><b id="hr-gross">$0.00</b></li>
+          <li><span>Tip-out</span><b id="hr-out">$0.00</b></li>
+          <li><span>Tips kept</span><b id="hr-net">$0.00</b></li>
+          <li><span>Base wage earned</span><b id="hr-wage-earned">$0.00</b></li>
+          <li class="total"><span>Total take-home</span><b id="hr-take">$0.00</b></li>
+        </ul>
+        <p class="calc-warn" id="hr-nohours" hidden>With zero hours there is no rate to
+          show. This tool leaves it blank rather than inventing one.</p>
+        <p class="calc-note">Everything above is worked out in your browser. Nothing you type is uploaded, stored or logged — there is no server behind this page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:44px">
+  <div class="wrap narrow">
+    <div class="prose" style="margin-top:0">
+      <h2>Why the number on the job ad is never the number</h2>
+      <p>"$35 an hour on a good night" is doing a lot of work in that sentence. It usually
+        means gross tips divided by scheduled hours on the best Friday of the month — which
+        is three separate exaggerations stacked on top of each other.</p>
+      <p>The honest version subtracts what you tipped out, counts the hours you were actually
+        there, and looks at a normal night rather than a memorable one.</p>
+
+      <h3>The formula</h3>
+      <blockquote><p><strong>real hourly rate = (tips − tip-out + wage × hours) ÷ hours</strong></p></blockquote>
+      <p>Three details matter, and this calculator gets all three right because the app does:</p>
+      <ul>
+        <li><strong>Tip-out comes off first.</strong> Money you hand to the bar is not money
+          you earned.</li>
+        <li><strong>Hours are actual.</strong> Including the side work and the forty minutes
+          after close.</li>
+        <li><strong>Zero hours means no rate.</strong> Not a huge number, not zero — nothing.
+          A rate with no time behind it is meaningless.</li>
+      </ul>
+
+      <h2>Averaging across shifts: do it the right way</h2>
+      <p>When you compare weeks or jobs, do not average your per-shift rates. A three-hour
+        lunch and a nine-hour Saturday are not equal votes, but averaging their rates treats
+        them as if they were, and it will flatter whichever shift was shortest.</p>
+      <p>Instead, blend: add up <em>all</em> the take-home, add up <em>all</em> the hours,
+        and divide once. That is what Tipfolio does, and it is why the app's number sometimes
+        looks lower than the one people carry in their heads.</p>
+
+      <div class="callout">
+        <p><strong>The comparison that actually pays.</strong> Once you have a few weeks of
+          honest rates, the useful question stops being "what do I make?" and becomes "which
+          night is worth picking up?". A Thursday that reliably runs 30% above your average
+          is worth more than a raise you have to ask for.</p>
+      </div>
+
+      <h2>What to do with the number</h2>
+      <ul>
+        <li><strong>Compare sections and stations</strong> — patio versus bar, lunch versus dinner.</li>
+        <li><strong>Compare jobs</strong> — the higher-volume place is not automatically the better one once its tip-out is in.</li>
+        <li><strong>Price your own time</strong> — decide whether a pickup shift beats the alternative.</li>
+        <li><strong>Sanity-check a new role</strong> before you leave a known quantity for it.</li>
+      </ul>
+      <p><a href="/guides/real-hourly-rate/">The full guide to your real hourly rate →</a></p>
+      <div class="disclaimer">Tipfolio helps you keep records. It is not tax advice. Consult a qualified tax professional and verify current IRS rules before filing.</div>
+      <h2>Questions</h2>
+    </div>
+    <div class="faq" style="margin-top:26px"><details><summary>How do you calculate a server's real hourly rate?</summary><p>Take your tips, subtract the tip-out you paid, add your base wage multiplied by the hours you worked, then divide the whole thing by those hours. In short: (net tips + base wage x hours) / hours. Most people skip the tip-out and use scheduled hours instead of actual, and both mistakes inflate the answer.</p></details><details><summary>Should I use scheduled hours or the hours I actually worked?</summary><p>Actual. Side work, a late cut, and the forty minutes rolling silverware after close are all hours your earnings have to stretch across. Using scheduled hours flatters the number and makes it useless for comparing one job to another.</p></details><details><summary>Is my real hourly rate what I should tell a landlord?</summary><p>It is a useful number, but a landlord or lender usually wants total earnings over a period rather than a rate. What they will not accept is a figure with nothing behind it, which is why a dated log matters more than any single number.</p></details><details><summary>Why is my real rate lower than I expected?</summary><p>Usually one of three things: tip-out was not subtracted, unpaid or unrecorded hours were left out, or a couple of strong nights were quietly standing in for a typical one. A blended rate across many shifts is the honest version.</p></details></div>
+  </div>
+</section>
+
+<section class="related"><div class="wrap narrow"><h2>Keep reading</h2><ul class="related-list"><li><a href="/calculators/tip-out/"><strong>Tip-out calculator</strong><span>Work out what you owe the bar before you work out your rate.</span></a></li><li><a href="/calculators/shift-earnings/"><strong>Shift earnings calculator</strong><span>Blend a whole week properly, not by averaging averages.</span></a></li><li><a href="/guides/how-to-track-tips/"><strong>How to track your tips</strong><span>One shift is a data point. A year is evidence.</span></a></li></ul></div></section>
+
+<section class="cta-band"><div class="wrap">
+  <div class="band">
+    <div class="band-grid">
+      <div>
+        <h2>One shift tells you very little.</h2>
+        <p style="margin-top:14px">Tipfolio computes this on every shift automatically, then shows you the blended rate by job and by night of the week — from your own log, on your own phone.</p>
+      </div>
+      <div class="band-cta"><span class="btn btn-onDark" aria-disabled="true">Coming soon to the App Store</span>
+        <p class="small" style="color:rgba(255,255,255,.7);margin-top:14px">
+          iPhone · No account required · Your earnings never leave the device</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/"><img src="/assets/img/favicon.svg" width="34" height="34" alt=""><span class="brand-name">Tipfolio</span></a>
+        <p class="small">The tip log for people who actually work for tips.
+           On your iPhone, with no server for your earnings.</p>
+        <p class="small" style="margin-top:12px">Lacewing Technologies LLC<br>30 N Gould St, Ste N, Sheridan, WY 82801, United States</p>
+      </div>
+      <div><h4>Product</h4><ul><li><a href="/features/">Features</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/about/">About</a></li><li><a href="/support/">Support</a></li></ul></div><div><h4>Free tools</h4><ul><li><a href="/calculators/tip-out/">Tip-out calculator</a></li><li><a href="/calculators/real-hourly-rate/">Real hourly rate</a></li><li><a href="/calculators/tip-tax-deduction/">Tip tax deduction</a></li><li><a href="/calculators/shift-earnings/">Shift earnings</a></li></ul></div><div><h4>Guides</h4><ul><li><a href="/guides/no-tax-on-tips/">No Tax on Tips, explained</a></li><li><a href="/guides/how-to-track-tips/">How to track your tips</a></li><li><a href="/guides/reporting-cash-tips/">Reporting cash tips</a></li><li><a href="/guides/">All guides</a></li></ul></div><div><h4>Who it's for</h4><ul><li><a href="/for/servers/">Servers</a></li><li><a href="/for/bartenders/">Bartenders</a></li><li><a href="/for/baristas/">Baristas</a></li><li><a href="/for/delivery-drivers/">Delivery drivers</a></li><li><a href="/for/hairstylists/">Hairstylists &amp; barbers</a></li></ul></div><div><h4>Legal</h4><ul><li><a href="/privacy/">Privacy policy</a></li><li><a href="/terms/">Terms of service</a></li><li><a href="mailto:support@tipfolio.app">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Lacewing Technologies LLC. All rights reserved.</span>
+      <span>Tipfolio is not a tax advisor. Not affiliated with the IRS or Apple.</span>
+    </div>
+  </div>
+</footer>
+<script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/calc.js" defer></script>
+</body>
+</html>

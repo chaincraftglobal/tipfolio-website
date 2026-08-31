@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tip-Out Calculator — What You Owe the Bar Tonight</title>
+<meta name="description" content="Free tip-out calculator for servers and bartenders. Percent of tips, percent of sales or flat amount — see what you owe and what you actually keep.">
+<link rel="canonical" href="https://tipfolio.app/calculators/tip-out/">
+<meta name="theme-color" content="#F7F4EE">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tipfolio">
+<meta property="og:url" content="https://tipfolio.app/calculators/tip-out/">
+<meta property="og:title" content="Tip-Out Calculator — What You Owe the Bar Tonight">
+<meta property="og:description" content="Free tip-out calculator for servers and bartenders. Percent of tips, percent of sales or flat amount — see what you owe and what you actually keep.">
+<meta property="og:image" content="https://tipfolio.app/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/favicon.svg">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a normal tip-out percentage?","acceptedAnswer":{"@type":"Answer","text":"It varies by house and by role. Percent-of-tips arrangements commonly land somewhere between 15% and 30% of your tips split across bar, busser, runner and host. Percent-of-sales arrangements are usually a much smaller number — often 1% to 5% — because they are taken against total sales rather than against your tips. Your employer's written policy is the only figure that actually governs you."}},{"@type":"Question","name":"Is tip-out taken from my tips before or after tax?","acceptedAnswer":{"@type":"Answer","text":"Tip-out is a transfer of money you received to other workers, and it happens before any tax question arises. What matters for your records is that you log both the gross tips you took and the tip-out you paid, so your net is derived rather than estimated. Tipfolio always stores both."}},{"@type":"Question","name":"Does tip-out reduce the tips I have to report?","acceptedAnswer":{"@type":"Answer","text":"Generally, tips you pass on to other employees under a tip-sharing or tip-pooling arrangement are not part of your own tip income, and the workers who receive them report them instead. The precise treatment depends on your arrangement, so keep the record of both figures and confirm the treatment with a tax professional."}},{"@type":"Question","name":"Can a tip-out be more than my tips?","acceptedAnswer":{"@type":"Answer","text":"It should not be, and this calculator will not let it: a tip-out is capped at the tips earned, exactly as the Tipfolio app caps it. If your house's rule produces a number larger than what you made on a slow night, that is worth raising — it usually means the rule is percent-of-sales and the night went badly."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tipfolio.app/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://tipfolio.app/calculators/"},{"@type":"ListItem","position":3,"name":"Tip-out"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/img/favicon.svg" width="34" height="34" alt=""><span class="brand-name">Tipfolio</span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="/features/">Features</a><a href="/guides/">Guides</a><a href="/calculators/" class="is-active">Calculators</a><a href="/pricing/">Pricing</a><a href="/support/">Support</a>
+      <span class="btn btn-primary" aria-disabled="true">Get the app</span>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/calculators/">Calculators</a></li><li aria-current="page">Tip-out</li></ol></nav>
+
+<section class="article">
+  <div class="wrap">
+    <div class="article-head">
+      <p class="eyebrow green">Free calculator</p>
+      <h1>Tip-out calculator</h1>
+      <p class="lede">Work out what you owe the bar, the busser and the runner tonight —
+        and what you actually walk with. Handles percent of tips, percent of sales and flat
+        amounts.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:30px">
+  <div class="wrap">
+    <div class="calc" id="calc-tipout">
+      <form class="calc-form" onsubmit="return false">
+        <noscript><p class="noscript-note">This calculator runs entirely in your browser, so it needs JavaScript switched on. Nothing you type is sent anywhere either way.</p></noscript>
+        <div class="field">
+          <label for="to-tips">Tips you took tonight <span class="hint">Cash and card together, before tip-out.</span></label>
+          <input type="number" id="to-tips" inputmode="decimal" min="0" step="0.01" value="240" placeholder="0.00">
+        </div>
+        <div class="field">
+          <label>How is your tip-out worked out?</label>
+          <div class="segmented" role="radiogroup" aria-label="Tip-out basis">
+            <label><input type="radio" name="basis" value="tips" checked><span>% of tips</span></label>
+            <label><input type="radio" name="basis" value="sales"><span>% of sales</span></label>
+            <label><input type="radio" name="basis" value="flat"><span>Flat</span></label>
+          </div>
+        </div>
+        <div class="field" id="to-sales-field" hidden>
+          <label for="to-sales">Your total sales tonight <span class="hint">Needed for a percent-of-sales rule.</span></label>
+          <input type="number" id="to-sales" inputmode="decimal" min="0" step="0.01" value="1800" placeholder="0.00">
+        </div>
+        <div class="field">
+          <label for="to-rate"><span id="to-rate-label">Percent of your tips</span>
+            <span class="hint">Enter <span id="to-rate-unit">%</span>.</span></label>
+          <input type="number" id="to-rate" inputmode="decimal" min="0" step="0.1" value="20">
+        </div>
+      </form>
+
+      <div class="calc-result" aria-live="polite">
+        <p class="eyebrow">You keep</p>
+        <p class="headline" id="to-kept">$0.00</p>
+        <p class="headline-sub" id="to-share">—</p>
+        <ul class="calc-lines">
+          <li><span>Tips taken</span><b id="to-gross">$0.00</b></li>
+          <li><span>Tip-out paid</span><b id="to-out">$0.00</b></li>
+        </ul>
+        <p class="calc-warn" id="to-warn-sales" hidden>Enter your total sales — a
+          percent-of-sales rule yields zero without one, rather than guessing.</p>
+        <p class="calc-warn" id="to-warn-cap" hidden>That rule would take everything you
+          made. A tip-out is capped at your tips here, as it is in the app.</p>
+        <p class="calc-note">Everything above is worked out in your browser. Nothing you type is uploaded, stored or logged — there is no server behind this page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:44px">
+  <div class="wrap narrow">
+    <div class="prose" style="margin-top:0">
+      <h2>The three ways houses do this</h2>
+      <p>Almost every tip-out arrangement is one of three shapes, and which one you are on
+        changes your risk profile far more than the percentage does.</p>
+      <table>
+        <thead><tr><th>Basis</th><th>How it's worked out</th><th>Who carries the risk of a bad night</th></tr></thead>
+        <tbody>
+          <tr><td><strong>% of tips</strong></td><td>A cut of what you made. The most common arrangement.</td><td>Shared. A slow night costs you both proportionally.</td></tr>
+          <tr><td><strong>% of sales</strong></td><td>A cut of your total sales, regardless of what you were tipped.</td><td><strong>You.</strong> Get stiffed on a $400 table and you still owe on it.</td></tr>
+          <tr><td><strong>Flat amount</strong></td><td>The same dollar figure every shift.</td><td><strong>You</strong> on slow nights; the support staff on busy ones.</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <p><strong>Why percent-of-sales stings.</strong> On a $1,800 sales night at 4%, you
+          owe $72 whether you were tipped $400 or $180. That is the arrangement worth
+          tracking most carefully — over a year, the difference between what you'd owe on a
+          tips basis and what you actually paid is real money, and you can only see it if
+          you logged both figures.</p>
+      </div>
+
+      <h2>The formula</h2>
+      <p>This calculator uses exactly the maths the Tipfolio app uses:</p>
+      <ul>
+        <li><strong>Percent of tips</strong> — <code>tip-out = gross tips × rate ÷ 100</code></li>
+        <li><strong>Percent of sales</strong> — <code>tip-out = total sales × rate ÷ 100</code>, and <strong>zero</strong> if you have not entered a sales figure. It will not guess.</li>
+        <li><strong>Flat</strong> — the amount you entered.</li>
+        <li>In every case the result is clamped: <code>0 ≤ tip-out ≤ gross tips</code>.</li>
+        <li><strong>What you keep</strong> — <code>net = gross tips − tip-out</code>, never below zero.</li>
+      </ul>
+
+      <h2>Log both numbers, not just the net</h2>
+      <p>The single most common record-keeping mistake tipped workers make is writing down
+        only what they walked with. That number is fine for your own budgeting and useless
+        for everything else: you cannot check a W-2 against it, cannot show a lender your
+        gross, and cannot tell whether your tip-out arrangement is quietly costing you.</p>
+      <p>Keep the gross and the tip-out separately, every night.
+        <a href="/guides/tip-out-explained/">More on how tip-outs work →</a></p>
+      <div class="disclaimer">Tipfolio helps you keep records. It is not tax advice. Consult a qualified tax professional and verify current IRS rules before filing.</div>
+      <h2>Questions</h2>
+    </div>
+    <div class="faq" style="margin-top:26px"><details><summary>What is a normal tip-out percentage?</summary><p>It varies by house and by role. Percent-of-tips arrangements commonly land somewhere between 15% and 30% of your tips split across bar, busser, runner and host. Percent-of-sales arrangements are usually a much smaller number — often 1% to 5% — because they are taken against total sales rather than against your tips. Your employer's written policy is the only figure that actually governs you.</p></details><details><summary>Is tip-out taken from my tips before or after tax?</summary><p>Tip-out is a transfer of money you received to other workers, and it happens before any tax question arises. What matters for your records is that you log both the gross tips you took and the tip-out you paid, so your net is derived rather than estimated. Tipfolio always stores both.</p></details><details><summary>Does tip-out reduce the tips I have to report?</summary><p>Generally, tips you pass on to other employees under a tip-sharing or tip-pooling arrangement are not part of your own tip income, and the workers who receive them report them instead. The precise treatment depends on your arrangement, so keep the record of both figures and confirm the treatment with a tax professional.</p></details><details><summary>Can a tip-out be more than my tips?</summary><p>It should not be, and this calculator will not let it: a tip-out is capped at the tips earned, exactly as the Tipfolio app caps it. If your house's rule produces a number larger than what you made on a slow night, that is worth raising — it usually means the rule is percent-of-sales and the night went badly.</p></details></div>
+  </div>
+</section>
+
+<section class="related"><div class="wrap narrow"><h2>Keep reading</h2><ul class="related-list"><li><a href="/calculators/real-hourly-rate/"><strong>Real hourly rate calculator</strong><span>What the shift actually paid, once tip-out and wage are in.</span></a></li><li><a href="/guides/tip-out-explained/"><strong>Tip-outs explained</strong><span>Pools, shares and what your house can legally take.</span></a></li><li><a href="/guides/how-to-track-tips/"><strong>How to track your tips</strong><span>The habit that makes the record hold up.</span></a></li></ul></div></section>
+
+<section class="cta-band"><div class="wrap">
+  <div class="band">
+    <div class="band-grid">
+      <div>
+        <h2>Your tip-out rule, applied automatically.</h2>
+        <p style="margin-top:14px">Set it once per job and Tipfolio works it out on every shift — editable before you save, and stored alongside your gross so nothing is lost.</p>
+      </div>
+      <div class="band-cta"><span class="btn btn-onDark" aria-disabled="true">Coming soon to the App Store</span>
+        <p class="small" style="color:rgba(255,255,255,.7);margin-top:14px">
+          iPhone · No account required · Your earnings never leave the device</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/"><img src="/assets/img/favicon.svg" width="34" height="34" alt=""><span class="brand-name">Tipfolio</span></a>
+        <p class="small">The tip log for people who actually work for tips.
+           On your iPhone, with no server for your earnings.</p>
+        <p class="small" style="margin-top:12px">Lacewing Technologies LLC<br>30 N Gould St, Ste N, Sheridan, WY 82801, United States</p>
+      </div>
+      <div><h4>Product</h4><ul><li><a href="/features/">Features</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/about/">About</a></li><li><a href="/support/">Support</a></li></ul></div><div><h4>Free tools</h4><ul><li><a href="/calculators/tip-out/">Tip-out calculator</a></li><li><a href="/calculators/real-hourly-rate/">Real hourly rate</a></li><li><a href="/calculators/tip-tax-deduction/">Tip tax deduction</a></li><li><a href="/calculators/shift-earnings/">Shift earnings</a></li></ul></div><div><h4>Guides</h4><ul><li><a href="/guides/no-tax-on-tips/">No Tax on Tips, explained</a></li><li><a href="/guides/how-to-track-tips/">How to track your tips</a></li><li><a href="/guides/reporting-cash-tips/">Reporting cash tips</a></li><li><a href="/guides/">All guides</a></li></ul></div><div><h4>Who it's for</h4><ul><li><a href="/for/servers/">Servers</a></li><li><a href="/for/bartenders/">Bartenders</a></li><li><a href="/for/baristas/">Baristas</a></li><li><a href="/for/delivery-drivers/">Delivery drivers</a></li><li><a href="/for/hairstylists/">Hairstylists &amp; barbers</a></li></ul></div><div><h4>Legal</h4><ul><li><a href="/privacy/">Privacy policy</a></li><li><a href="/terms/">Terms of service</a></li><li><a href="mailto:support@tipfolio.app">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Lacewing Technologies LLC. All rights reserved.</span>
+      <span>Tipfolio is not a tax advisor. Not affiliated with the IRS or Apple.</span>
+    </div>
+  </div>
+</footer>
+<script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/calc.js" defer></script>
+</body>
+</html>

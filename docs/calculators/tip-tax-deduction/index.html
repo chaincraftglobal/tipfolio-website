@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tip Tax Deduction Calculator (2025–2028)</title>
+<meta name="description" content="Free estimator for the federal tip deduction. See where your qualified tips land against the $25,000 annual cap and what it could be worth. Not tax advice.">
+<link rel="canonical" href="https://tipfolio.app/calculators/tip-tax-deduction/">
+<meta name="theme-color" content="#F7F4EE">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tipfolio">
+<meta property="og:url" content="https://tipfolio.app/calculators/tip-tax-deduction/">
+<meta property="og:title" content="Tip Tax Deduction Calculator (2025–2028)">
+<meta property="og:description" content="Free estimator for the federal tip deduction. See where your qualified tips land against the $25,000 annual cap and what it could be worth. Not tax advice.">
+<meta property="og:image" content="https://tipfolio.app/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/favicon.svg">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is the tip deduction the same as tips being tax free?","acceptedAnswer":{"@type":"Answer","text":"No, and the popular name for it is misleading. It is a deduction against tip income up to an annual cap, not an exemption. If you owe little or no federal income tax to begin with, a deduction has little or nothing to reduce — which is why a large share of tipped workers see no benefit from it at all."}},{"@type":"Question","name":"Do mandatory service charges count?","acceptedAnswer":{"@type":"Answer","text":"Generally no. An automatic gratuity added to a large party's bill is typically treated as a service charge and as wages, not as a voluntary tip, so it usually does not qualify. This is one of the clearest reasons to log your tips and your auto-grat separately rather than as one number."}},{"@type":"Question","name":"Does my tip-out reduce the tips I can deduct?","acceptedAnswer":{"@type":"Answer","text":"Under the approach this estimator uses, yes: what you count is what you actually kept, after tip-outs paid to other workers. That is why the calculator asks for both figures. Confirm the treatment for your own arrangement with a tax professional before you rely on it."}},{"@type":"Question","name":"What records do I need to claim it?","acceptedAnswer":{"@type":"Answer","text":"A daily record of your tips, kept as you earn them. The value of a contemporaneous log is that it was written at the time rather than reconstructed afterwards, which is precisely what makes it credible. A spreadsheet built in March from memory is worth far less than a dated entry made on the night."}},{"@type":"Question","name":"Is this estimate reliable?","acceptedAnswer":{"@type":"Answer","text":"It is arithmetic on figures you typed, using parameters that are stated on this page. It is not a tax calculation, does not know your filing status, income, other deductions or state taxes, and is not advice. Treat it as a way to see the shape of the thing, then talk to a professional."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tipfolio.app/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://tipfolio.app/calculators/"},{"@type":"ListItem","position":3,"name":"Tip tax deduction"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/img/favicon.svg" width="34" height="34" alt=""><span class="brand-name">Tipfolio</span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="/features/">Features</a><a href="/guides/">Guides</a><a href="/calculators/" class="is-active">Calculators</a><a href="/pricing/">Pricing</a><a href="/support/">Support</a>
+      <span class="btn btn-primary" aria-disabled="true">Get the app</span>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/calculators/">Calculators</a></li><li aria-current="page">Tip tax deduction</li></ol></nav>
+
+<section class="article">
+  <div class="wrap">
+    <div class="article-head">
+      <p class="eyebrow green">Free estimator</p>
+      <h1>Tip tax deduction estimator</h1>
+      <p class="lede">See roughly where your qualified tips land against the
+        $25,000 annual cap for 2025–2028 — and what that could be worth at
+        your marginal rate. An illustration from your own numbers, not a tax calculation.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:30px">
+  <div class="wrap">
+    <div class="calc" id="calc-deduction" data-cap="25000">
+      <form class="calc-form" onsubmit="return false">
+        <noscript><p class="noscript-note">This calculator runs entirely in your browser, so it needs JavaScript switched on. Nothing you type is sent anywhere either way.</p></noscript>
+        <div class="field">
+          <label>What are you entering?</label>
+          <div class="segmented" role="radiogroup" aria-label="Period">
+            <label><input type="radio" name="period" value="week" checked><span>Per week</span></label>
+            <label><input type="radio" name="period" value="month"><span>Per month</span></label>
+            <label><input type="radio" name="period" value="year"><span>Whole year</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="td-tips">Tips for that period <span class="hint">Voluntary tips only — leave out mandatory service charges.</span></label>
+          <input type="number" id="td-tips" inputmode="decimal" min="0" step="0.01" value="600">
+        </div>
+        <div class="field">
+          <label for="td-tipout">Tip-out you paid, same period <span class="hint">Money passed to bar, bussers and runners.</span></label>
+          <input type="number" id="td-tipout" inputmode="decimal" min="0" step="0.01" value="120">
+        </div>
+        <div class="field" id="td-shifts-field" hidden>
+          <label for="td-shifts">Shifts per year</label>
+          <input type="number" id="td-shifts" inputmode="decimal" min="0" step="1" value="200">
+        </div>
+        <div class="field">
+          <label for="td-rate">Your marginal federal rate
+            <span class="hint">A labelled assumption, not a lookup. If you don't know it, 22% is a common bracket.</span></label>
+          <input type="number" id="td-rate" inputmode="decimal" min="0" max="50" step="1" value="22">
+        </div>
+      </form>
+
+      <div class="calc-result" aria-live="polite">
+        <p class="eyebrow">Potentially deductible</p>
+        <p class="headline" id="td-headline">$0</p>
+        <p class="headline-sub" id="td-sub">Deductible, based on what you entered.</p>
+        <ul class="calc-lines">
+          <li><span>Tips for the year</span><b id="td-gross">$0</b></li>
+          <li><span>Tip-out paid</span><b id="td-out">$0</b></li>
+          <li><span>Qualified tips</span><b id="td-qualified">$0</b></li>
+          <li><span>Annual cap</span><b id="td-cap">$0</b></li>
+          <li class="total"><span>Illustrative saving at <span id="td-rate-echo">22%</span></span><b id="td-saving">$0</b></li>
+        </ul>
+        <p class="calc-warn" id="td-warn-cap" hidden>You are above the cap. Tips beyond it
+          do not add to the deduction — but they still belong in your log.</p>
+        <p class="calc-note">Everything above is worked out in your browser. Nothing you type is uploaded, stored or logged — there is no server behind this page.</p>
+      </div>
+    </div>
+    <div class="disclaimer">Tipfolio helps you keep records. It is not tax advice. Consult a qualified tax professional and verify current IRS rules before filing. The saving line is an illustration at a rate you chose. It is not a prediction of your refund, and it ignores filing status, other income, other deductions, payroll tax and state tax entirely.</div>
+  </div>
+</section>
+
+<section style="padding-top:34px">
+  <div class="wrap narrow">
+    <div class="keytakeaways">
+      <h2>In short</h2>
+      <ul>
+        <li><span class="tick" style="background:var(--green-tint);color:var(--green)">&#10003;</span><span>It is a <strong>deduction up to $25,000 a year</strong>, available for tax years 2025–2028 — not a blanket exemption on tips.</span></li>
+        <li><span class="tick" style="background:var(--green-tint);color:var(--green)">&#10003;</span><span>Only <strong>voluntary</strong> tips count. Mandatory service charges generally do not.</span></li>
+        <li><span class="tick" style="background:var(--green-tint);color:var(--green)">&#10003;</span><span>If you owe little federal income tax, a deduction has little to reduce.</span></li>
+        <li><span class="tick" style="background:var(--green-tint);color:var(--green)">&#10003;</span><span>It rests on you having <strong>a daily record</strong> — which is the part almost nobody has.</span></li>
+      </ul>
+    </div>
+    <div class="prose" style="margin-top:0">
+      <h2>How this estimate is worked out</h2>
+      <ol>
+        <li>Your figures are scaled to a year — weekly × 52, monthly × 12, or taken as entered.</li>
+        <li>Tip-out is subtracted, giving <strong>qualified tips</strong> — what you actually kept.</li>
+        <li>The cap is applied: <code>deductible = min(qualified tips, $25,000)</code>.</li>
+        <li>The illustration multiplies the deductible amount by the marginal rate you chose.</li>
+      </ol>
+      <p>That last step is the one to be most careful with. It is a labelled assumption you
+        picked, not a calculation of your actual liability, and your real outcome depends on
+        your filing status, your total income, your other deductions and your state.</p>
+
+      <h2>Verify the parameters before you rely on them</h2>
+      <p>The cap, the eligible years, the treatment of tip-outs and the exclusion of service
+        charges are the four things this estimate rests on. They are stated openly here
+        rather than buried, so you can check them: see
+        <em>IRS Publication 531, Reporting Tip Income</em> and current IRS guidance, and confirm your own position
+        with a qualified tax professional. Rules change; this page is not a substitute for
+        the source.</p>
+
+      <h2>The part the estimate can't do for you</h2>
+      <p>Whatever the number above says, claiming a deduction on tip income depends on
+        substantiation — a daily record of what you earned, kept as you earned it. The
+        estimate is the easy half. The log is the half that takes a year, ten seconds at a
+        time. <a href="/guides/no-tax-on-tips/">Read the full explainer →</a></p>
+      <div class="disclaimer">Tipfolio helps you keep records. It is not tax advice. Consult a qualified tax professional and verify current IRS rules before filing.</div>
+      <h2>Questions</h2>
+    </div>
+    <div class="faq" style="margin-top:26px"><details><summary>Is the tip deduction the same as tips being tax free?</summary><p>No, and the popular name for it is misleading. It is a deduction against tip income up to an annual cap, not an exemption. If you owe little or no federal income tax to begin with, a deduction has little or nothing to reduce — which is why a large share of tipped workers see no benefit from it at all.</p></details><details><summary>Do mandatory service charges count?</summary><p>Generally no. An automatic gratuity added to a large party's bill is typically treated as a service charge and as wages, not as a voluntary tip, so it usually does not qualify. This is one of the clearest reasons to log your tips and your auto-grat separately rather than as one number.</p></details><details><summary>Does my tip-out reduce the tips I can deduct?</summary><p>Under the approach this estimator uses, yes: what you count is what you actually kept, after tip-outs paid to other workers. That is why the calculator asks for both figures. Confirm the treatment for your own arrangement with a tax professional before you rely on it.</p></details><details><summary>What records do I need to claim it?</summary><p>A daily record of your tips, kept as you earn them. The value of a contemporaneous log is that it was written at the time rather than reconstructed afterwards, which is precisely what makes it credible. A spreadsheet built in March from memory is worth far less than a dated entry made on the night.</p></details><details><summary>Is this estimate reliable?</summary><p>It is arithmetic on figures you typed, using parameters that are stated on this page. It is not a tax calculation, does not know your filing status, income, other deductions or state taxes, and is not advice. Treat it as a way to see the shape of the thing, then talk to a professional.</p></details></div>
+  </div>
+</section>
+
+<section class="related"><div class="wrap narrow"><h2>Keep reading</h2><ul class="related-list"><li><a href="/guides/no-tax-on-tips/"><strong>No Tax on Tips, explained</strong><span>What the deduction is, who it helps, and who it doesn&#x27;t.</span></a></li><li><a href="/guides/reporting-cash-tips/"><strong>Reporting cash tips</strong><span>What you&#x27;re required to report, and to whom.</span></a></li><li><a href="/guides/how-to-track-tips/"><strong>How to track your tips</strong><span>Building the daily record the deduction depends on.</span></a></li></ul></div></section>
+
+<section class="cta-band"><div class="wrap">
+  <div class="band">
+    <div class="band-grid">
+      <div>
+        <h2>The estimate is the easy part.</h2>
+        <p style="margin-top:14px">Tipfolio tracks the real figure against the cap all year, from entries you made on the night — and exports the daily record behind it.</p>
+      </div>
+      <div class="band-cta"><span class="btn btn-onDark" aria-disabled="true">Coming soon to the App Store</span>
+        <p class="small" style="color:rgba(255,255,255,.7);margin-top:14px">
+          iPhone · No account required · Your earnings never leave the device</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/"><img src="/assets/img/favicon.svg" width="34" height="34" alt=""><span class="brand-name">Tipfolio</span></a>
+        <p class="small">The tip log for people who actually work for tips.
+           On your iPhone, with no server for your earnings.</p>
+        <p class="small" style="margin-top:12px">Lacewing Technologies LLC<br>30 N Gould St, Ste N, Sheridan, WY 82801, United States</p>
+      </div>
+      <div><h4>Product</h4><ul><li><a href="/features/">Features</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/about/">About</a></li><li><a href="/support/">Support</a></li></ul></div><div><h4>Free tools</h4><ul><li><a href="/calculators/tip-out/">Tip-out calculator</a></li><li><a href="/calculators/real-hourly-rate/">Real hourly rate</a></li><li><a href="/calculators/tip-tax-deduction/">Tip tax deduction</a></li><li><a href="/calculators/shift-earnings/">Shift earnings</a></li></ul></div><div><h4>Guides</h4><ul><li><a href="/guides/no-tax-on-tips/">No Tax on Tips, explained</a></li><li><a href="/guides/how-to-track-tips/">How to track your tips</a></li><li><a href="/guides/reporting-cash-tips/">Reporting cash tips</a></li><li><a href="/guides/">All guides</a></li></ul></div><div><h4>Who it's for</h4><ul><li><a href="/for/servers/">Servers</a></li><li><a href="/for/bartenders/">Bartenders</a></li><li><a href="/for/baristas/">Baristas</a></li><li><a href="/for/delivery-drivers/">Delivery drivers</a></li><li><a href="/for/hairstylists/">Hairstylists &amp; barbers</a></li></ul></div><div><h4>Legal</h4><ul><li><a href="/privacy/">Privacy policy</a></li><li><a href="/terms/">Terms of service</a></li><li><a href="mailto:support@tipfolio.app">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Lacewing Technologies LLC. All rights reserved.</span>
+      <span>Tipfolio is not a tax advisor. Not affiliated with the IRS or Apple.</span>
+    </div>
+  </div>
+</footer>
+<script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/calc.js" defer></script>
+</body>
+</html>

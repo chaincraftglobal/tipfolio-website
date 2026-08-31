@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Tipfolio — Why we built a tip log with no server</title>
+<meta name="description" content="Tipfolio exists because the tax break that helps tipped workers most is the hardest to claim. Here is the ten-second design constraint, and why there is no backend.">
+<link rel="canonical" href="https://tipfolio.app/about/">
+<meta name="theme-color" content="#F7F4EE">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tipfolio">
+<meta property="og:url" content="https://tipfolio.app/about/">
+<meta property="og:title" content="About Tipfolio — Why we built a tip log with no server">
+<meta property="og:description" content="Tipfolio exists because the tax break that helps tipped workers most is the hardest to claim. Here is the ten-second design constraint, and why there is no backend.">
+<meta property="og:image" content="https://tipfolio.app/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/favicon.svg">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tipfolio.app/"},{"@type":"ListItem","position":2,"name":"About"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/img/favicon.svg" width="34" height="34" alt=""><span class="brand-name">Tipfolio</span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="/features/">Features</a><a href="/guides/">Guides</a><a href="/calculators/">Calculators</a><a href="/pricing/">Pricing</a><a href="/support/">Support</a>
+      <span class="btn btn-primary" aria-disabled="true">Get the app</span>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">About</li></ol></nav>
+
+<section class="article">
+  <div class="wrap narrow">
+    <div class="article-head">
+      <p class="eyebrow green">About</p>
+      <h1>Built for the people the paperwork forgets.</h1>
+      <p class="lede">Tipfolio came out of a specific, unglamorous problem: the tax break
+        that helps tipped workers most is the one that is hardest for them to actually
+        claim.</p>
+    </div>
+    <div class="prose">
+      <h2>The problem</h2>
+      <p>A deduction on tip income is worth real money to someone making most of it in cash
+        and card tips. But claiming it properly depends on something almost nobody has: a
+        <em>contemporaneous daily record</em> — a log written as the money was earned, not
+        reconstructed from memory in March.</p>
+      <p>Most tipped workers keep that record in a notes app, a shoebox, or not at all. Not
+        through carelessness. Because at 1 AM after a double, filling in a spreadsheet is
+        the last thing that is going to happen.</p>
+
+      <h2>The design constraint</h2>
+      <p>So the whole app is built around one number: <strong>ten seconds</strong>. If
+        logging a shift takes longer than that, the habit dies, and without the habit there
+        is no record and no deduction. Everything else — the pre-filled defaults, the custom
+        keypad, the reminder that opens straight into it — exists to protect that number.</p>
+      <blockquote><p>A year of ten-second entries <em>is</em> the record. That is the
+        entire product.</p></blockquote>
+
+      <h2>Why there is no server</h2>
+      <p>An app holding a year of someone's undeclared-feeling income is holding something
+        sensitive. The safest architecture for that data is the one where we never have it.</p>
+      <p>So Tipfolio has no backend for your earnings. Not "we don't look at it" — there is
+        no networking code in the app that could send it. No analytics, no crash reporting,
+        no third-party SDKs, no advertising identifiers. The optional iCloud backup is
+        encrypted on your device with a key held in your own iCloud Keychain, so even the
+        copy in the cloud is one we could not read if we were compelled to.</p>
+      <p>That decision costs us things. We cannot see how the app is used, cannot debug from
+        telemetry, and cannot build a growth loop out of your data. We think that is the
+        correct trade for this particular product.
+        <a href="/privacy/">The privacy policy spells out exactly what that means.</a></p>
+
+      <h2>Honesty about numbers</h2>
+      <p>Money apps are unusually tempting to lie with. A rate looks better if you ignore
+        tip-outs; a trend looks dramatic if you compare a partial month to a whole one; an
+        insight looks smart if you generate it from four shifts.</p>
+      <p>Tipfolio refuses all three. Where there is not enough evidence for a claim, the
+        card is hidden rather than filled with a guess. Where a figure can't be computed, it
+        shows a dash rather than a zero. And tax figures are always framed as potential
+        deductions derived from your own records — never as a promised saving.</p>
+
+      <h2>Who makes it</h2>
+      <p>Tipfolio is built by <strong>Lacewing Technologies LLC</strong>, a small independent
+        software company. It is not venture funded, does not sell data, and has no growth
+        target that depends on you doing anything other than logging your shifts.</p>
+      <p>If something is wrong, or the app misses something your job needs, write to
+        <a href="mailto:support@tipfolio.app">support@tipfolio.app</a>. A person reads it.</p>
+      <p class="small">Lacewing Technologies LLC · 30 N Gould St, Ste N, Sheridan, WY 82801, United States</p>
+    </div>
+    <div class="disclaimer">Tipfolio helps you keep records. It is not tax advice. Consult a qualified tax professional and verify current IRS rules before filing.</div>
+  </div>
+</section>
+
+<section class="cta-band"><div class="wrap">
+  <div class="band">
+    <div class="band-grid">
+      <div>
+        <h2>Stop reconstructing your year from memory.</h2>
+        <p style="margin-top:14px">Tipfolio turns ten seconds a night into the daily record your deduction is built on. Free to log, forever.</p>
+      </div>
+      <div class="band-cta"><span class="btn btn-onDark" aria-disabled="true">Coming soon to the App Store</span>
+        <p class="small" style="color:rgba(255,255,255,.7);margin-top:14px">
+          iPhone · No account required · Your earnings never leave the device</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/"><img src="/assets/img/favicon.svg" width="34" height="34" alt=""><span class="brand-name">Tipfolio</span></a>
+        <p class="small">The tip log for people who actually work for tips.
+           On your iPhone, with no server for your earnings.</p>
+        <p class="small" style="margin-top:12px">Lacewing Technologies LLC<br>30 N Gould St, Ste N, Sheridan, WY 82801, United States</p>
+      </div>
+      <div><h4>Product</h4><ul><li><a href="/features/">Features</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/about/">About</a></li><li><a href="/support/">Support</a></li></ul></div><div><h4>Free tools</h4><ul><li><a href="/calculators/tip-out/">Tip-out calculator</a></li><li><a href="/calculators/real-hourly-rate/">Real hourly rate</a></li><li><a href="/calculators/tip-tax-deduction/">Tip tax deduction</a></li><li><a href="/calculators/shift-earnings/">Shift earnings</a></li></ul></div><div><h4>Guides</h4><ul><li><a href="/guides/no-tax-on-tips/">No Tax on Tips, explained</a></li><li><a href="/guides/how-to-track-tips/">How to track your tips</a></li><li><a href="/guides/reporting-cash-tips/">Reporting cash tips</a></li><li><a href="/guides/">All guides</a></li></ul></div><div><h4>Who it's for</h4><ul><li><a href="/for/servers/">Servers</a></li><li><a href="/for/bartenders/">Bartenders</a></li><li><a href="/for/baristas/">Baristas</a></li><li><a href="/for/delivery-drivers/">Delivery drivers</a></li><li><a href="/for/hairstylists/">Hairstylists &amp; barbers</a></li></ul></div><div><h4>Legal</h4><ul><li><a href="/privacy/">Privacy policy</a></li><li><a href="/terms/">Terms of service</a></li><li><a href="mailto:support@tipfolio.app">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Lacewing Technologies LLC. All rights reserved.</span>
+      <span>Tipfolio is not a tax advisor. Not affiliated with the IRS or Apple.</span>
+    </div>
+  </div>
+</footer>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>
