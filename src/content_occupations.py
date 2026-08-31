@@ -2,7 +2,7 @@
 so these are not one template with the noun swapped."""
 from build import (Page, add, TAX, BRAND, cta, disclaimer, app_cta_band,
                    related, SITE)
-from content_guides import faq_html, faq_schema, takeaways
+from content_guides import faq_html, faq_schema, takeaways, article_schema
 
 
 def role_page(*, path, title, description, kicker, h1, lede, points, body,
@@ -38,11 +38,65 @@ def role_page(*, path, title, description, kicker, h1, lede, points, body,
     add(Page(path, title, description,
              hero + related(rel or []) + app_cta_band(),
              og_type="article",
-             trail=[("Home", "/"), (crumb, None)],
-             priority="0.8", schema=[faq_schema(faq)]))
+             trail=[("Home", "/"), ("Who it's for", "/for/"), (crumb, None)],
+             nav="", priority="0.8",
+             schema=[article_schema(h1.replace("&amp;", "and"), description, path),
+                     faq_schema(faq)]))
 
 
 def build():
+    # ==================================================== HUB
+    roles = [
+        ("Servers &amp; waitstaff", "/for/servers/",
+         "The most complicated tip-out in the building, plus auto-grats, side work "
+         "and a section you do not choose."),
+        ("Bartenders", "/for/bartenders/",
+         "On both sides of the tip-out: cash-heavy, and shifts that cross midnight "
+         "into the wrong business date."),
+        ("Baristas &amp; café staff", "/for/baristas/",
+         "Pooled tips split by hours. Small per shift, substantial per year, and "
+         "easy to under-count from memory."),
+        ("Delivery drivers", "/for/delivery-drivers/",
+         "Tips versus delivery fees versus promotions — three different things the "
+         "app screens blur into one total."),
+        ("Hairstylists &amp; barbers", "/for/hairstylists/",
+         "Commission or chair rent: two genuinely different tax positions wearing "
+         "the same job title."),
+    ]
+    cards = "".join(
+        f'<a class="link-card" href="{href}"><h2>{name}</h2><p>{blurb}</p>'
+        f'<span class="more">Read →</span></a>' for name, href, blurb in roles)
+
+    hub_body = f"""
+<section class="article">
+  <div class="wrap">
+    <div class="article-head">
+      <p class="eyebrow green">Who it's for</p>
+      <h1>Different jobs, different money.</h1>
+      <p class="lede">A server's tip-out is nothing like a booth renter's chair rent, and a
+        delivery fee is not a tip at all. The rules that matter change with the job, so start
+        with the one you actually do.</p>
+    </div>
+  </div>
+</section>
+<section style="padding-top:34px">
+  <div class="wrap">
+    <div class="grid grid-3">{cards}</div>
+    <p class="lede" style="margin-top:34px">Hotel staff, casino dealers, valets, tattoo
+      artists and everyone else — the <a href="/guides/">guides</a> cover the rules that
+      apply across tipped work, and the <a href="/calculators/">calculators</a> work whatever
+      your job title is.</p>
+    {disclaimer()}
+  </div>
+</section>
+{app_cta_band()}
+"""
+    add(Page("/for/", "Tipfolio by Job — Servers, Bartenders, Baristas & More",
+             "Tip tracking for the job you actually do. Servers, bartenders, baristas, "
+             "delivery drivers and salon pros each face different tip-out, cash and "
+             "tax realities.",
+             hub_body, trail=[("Home", "/"), ("Who it's for", None)], priority="0.85"))
+
     # ==================================================== SERVERS
     role_page(
         path="/for/servers/",

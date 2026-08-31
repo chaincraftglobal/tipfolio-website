@@ -60,6 +60,9 @@ with trailing slashes (`LegalLinks` in `PaywallView.swift`). Both resolve as
 directories here, so the URLs work with no redirect — keep it that way. A
 redirect through a plain `http://` hop is an App Review problem.
 
+SEO — what's built in, what was measured, and the Search Console steps — is in
+[SEO.md](SEO.md).
+
 ## Things to change before launch
 
 1. **`APP_STORE_URL` in `src/build.py` is empty**, so every call to action renders as
@@ -67,13 +70,15 @@ redirect through a plain `http://` hop is an App Review problem.
    there once the app is live and rebuild — every page updates at once.
 2. **`support@tipfolio.app` must actually receive mail.** It is on every page, in
    both legal documents, and is what Apple will use.
-3. **Verify the tax parameters.** `TAX` in `src/build.py` mirrors `AppConfig.Tax` in
+3. **`GSC_TOKEN` in `src/build.py` is empty** — paste the Search Console
+   verification token there if you use the HTML-tag method. See [SEO.md](SEO.md).
+4. **Verify the tax parameters.** `TAX` in `src/build.py` mirrors `AppConfig.Tax` in
    the app — the $25,000 cap, the 2025–2028 years, the net-of-tip-out definition
    and the 22% illustration. These are still unverified against primary IRS
    guidance (see `Marketing/APPLE-POLICY-AUDIT.md`). They are now published on a
    public website, which raises the stakes: **verify before submitting the
    sitemap to Google Search Console.**
-4. **Have the two legal pages reviewed.** They are the operator's own terms, not
+5. **Have the two legal pages reviewed.** They are the operator's own terms, not
    advice from counsel.
 
 ## House rules the generator enforces
@@ -84,6 +89,7 @@ redirect through a plain `http://` hop is an App Review problem.
   against the body, not the footer.
 - **Titles ≤ 65 characters; descriptions 70–165 characters.**
 - **No duplicate titles or descriptions** across the site.
+- **Exactly one `<h1>` per page, and no skipped heading levels.**
 
 And two rules it keeps by construction:
 

@@ -89,7 +89,7 @@ def build():
     ]
     grid = "".join(
         f'<a class="link-card" href="{href}"><span class="kicker">{k}</span>'
-        f'<h3>{t}</h3><p>{d}</p><span class="more">Read →</span></a>'
+        f'<h2>{t}</h2><p>{d}</p><span class="more">Read →</span></a>'
         for k, t, href, d in cards)
 
     index = f"""

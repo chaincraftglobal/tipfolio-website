@@ -266,9 +266,15 @@ section { padding: clamp(56px, 7vw, 104px) 0; }
 .footer-brand { max-width: 32ch; }
 @media (max-width: 1040px) { .footer-grid { grid-template-columns: 1fr 1fr 1fr; } .footer-brand { grid-column: 1 / -1; } }
 @media (max-width: 620px)  { .footer-grid { grid-template-columns: 1fr 1fr; } }
-.site-footer h4 {
+.site-footer .footer-heading {
   font-family: var(--body); font-size: .68rem; font-weight: 800;
-  letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  margin: 0 0 14px;
+}
+.toc-heading {
+  font-family: var(--body); font-size: .68rem; font-weight: 800;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  margin: 0 0 14px;
 }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .site-footer a { color: var(--ink-2); text-decoration: none; font-size: .93rem; }
@@ -421,7 +427,7 @@ section { padding: clamp(56px, 7vw, 104px) 0; }
   text-decoration: none; transition: transform .16s ease, box-shadow .16s ease;
 }
 .link-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); color: inherit; }
-.link-card h3 { margin-bottom: 8px; }
+.link-card h2, .link-card h3 { margin-bottom: 8px; font-size: 1.16rem; letter-spacing: -.01em; line-height: 1.3; }
 .link-card p { color: var(--ink-2); font-size: .94rem; margin: 0; }
 .link-card .kicker {
   font-size: .66rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;

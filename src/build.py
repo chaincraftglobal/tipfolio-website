@@ -95,6 +95,7 @@ FOOTER = [
         ("Baristas", "/for/baristas/"),
         ("Delivery drivers", "/for/delivery-drivers/"),
         ("Hairstylists & barbers", "/for/hairstylists/"),
+        ("All jobs", "/for/"),
     ]),
     ("Legal", [
         ("Privacy policy", "/privacy/"),
@@ -118,6 +119,12 @@ def cta(label="Coming soon to the App Store", cls="btn-primary"):
 
 
 APP_STORE_URL = ""  # TODO: paste the App Store listing URL here once live.
+
+# Google Search Console verification token. Paste the content value of the
+# meta tag Search Console gives you (the "HTML tag" method) and rebuild; it is
+# then emitted on every page, which also verifies the domain if you later move
+# host. Leave empty to emit nothing.
+GSC_TOKEN = ""
 
 
 def header(active=""):
@@ -144,7 +151,9 @@ def footer():
     cols = ""
     for title, links in FOOTER:
         items = "".join(f'<li><a href="{h}">{html.escape(l)}</a></li>' for l, h in links)
-        cols += f"<div><h4>{title}</h4><ul>{items}</ul></div>"
+        cols += (f'<div><p class="footer-heading" id="foot-{title.lower().replace(" ", "-").replace(chr(39), "")}">'
+                 f'{title}</p><ul aria-labelledby="foot-{title.lower().replace(" ", "-").replace(chr(39), "")}">'
+                 f'{items}</ul></div>')
     return f"""<footer class="site-footer">
   <div class="wrap">
     <div class="footer-grid">
@@ -233,8 +242,10 @@ TEMPLATE = """<!DOCTYPE html>
 <title>{title}</title>
 <meta name="description" content="{description}">
 <link rel="canonical" href="{canonical}">
-<meta name="theme-color" content="#F7F4EE">{robots}
+<meta name="theme-color" content="#F7F4EE">{robots}{verification}
+<meta name="author" content="Lacewing Technologies LLC">
 <meta property="og:type" content="{og_type}">
+<meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Tipfolio">
 <meta property="og:url" content="{canonical}">
 <meta property="og:title" content="{og_title}">
@@ -258,6 +269,22 @@ TEMPLATE = """<!DOCTYPE html>
 </body>
 </html>
 """
+
+ORG_SCHEMA = (
+    '{"@context":"https://schema.org","@graph":['
+    '{"@type":"Organization","@id":"%(site)s/#org","name":"Tipfolio",'
+    '"legalName":"Lacewing Technologies LLC","url":"%(site)s/",'
+    '"logo":{"@type":"ImageObject","url":"%(site)s/assets/img/og-image.png",'
+    '"width":1200,"height":630},'
+    '"contactPoint":{"@type":"ContactPoint","contactType":"customer support",'
+    '"email":"support@tipfolio.app"},'
+    '"address":{"@type":"PostalAddress","streetAddress":"30 N Gould St, Ste N",'
+    '"addressLocality":"Sheridan","addressRegion":"WY","postalCode":"82801",'
+    '"addressCountry":"US"}},'
+    '{"@type":"WebSite","@id":"%(site)s/#website","url":"%(site)s/",'
+    '"name":"Tipfolio","inLanguage":"en-US",'
+    '"publisher":{"@id":"%(site)s/#org"}}]}'
+) % {"site": SITE}
 
 PAGES = []
 
@@ -300,6 +327,8 @@ def render(page):
         canonical=canonical,
         site=SITE,
         robots='\n<meta name="robots" content="noindex">' if page.noindex else "",
+        verification=(f'\n<meta name="google-site-verification" content="{GSC_TOKEN}">'
+                      if GSC_TOKEN else ""),
         og_type=page.og_type,
         og_title=html.escape(page.og_title),
         schema=schema_html,
@@ -326,6 +355,17 @@ def write_all():
                       or "No Tax on Tips" in page.body)
         if states_tax and "not tax advice" not in page.body:
             problems.append(f"{page.path}: states a tax figure without the disclaimer")
+
+        h1s = re.findall(r"<h1[^>]*>", markup)
+        if len(h1s) != 1:
+            problems.append(f"{page.path}: {len(h1s)} <h1> elements (want exactly 1)")
+        levels = [int(m) for m in re.findall(r"<h([1-6])[^>]*>", markup)]
+        prev = 0
+        for lv in levels:
+            if prev and lv > prev + 1:
+                problems.append(f"{page.path}: heading level skips h{prev} -> h{lv}")
+                break
+            prev = lv
 
         if len(page.title) > 65:
             problems.append(f"{page.path}: title {len(page.title)} chars (>65)")

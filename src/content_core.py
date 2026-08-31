@@ -1,6 +1,6 @@
 """Home, features, pricing, about."""
 from build import (Page, add, TAX, BRAND, cta, disclaimer, app_cta_band,
-                   related, SITE)
+                   related, SITE, ORG_SCHEMA)
 
 
 def shot(name, alt, title, caption):
@@ -214,10 +214,10 @@ def build():
       <a class="link-card" href="/for/hairstylists/"><h3>Hairstylists &amp; barbers</h3>
         <p>Commission or chair rent — two different tax positions with one job title.</p>
         <span class="more">Read →</span></a>
-      <a class="link-card" href="/guides/"><h3>Everyone else</h3>
-        <p>Hotel staff, casino dealers, valets, tattoo artists — the guides cover the rules
-           that apply across tipped work.</p>
-        <span class="more">All guides →</span></a>
+      <a class="link-card" href="/for/"><h3>Everyone else</h3>
+        <p>Hotel staff, casino dealers, valets, tattoo artists — the rules that apply
+           across tipped work, whatever your job title is.</p>
+        <span class="more">See all jobs →</span></a>
     </div>
   </div>
 </section>
@@ -319,7 +319,7 @@ def build():
         "on your phone.",
         home, og_title="Tipfolio — Log tips. Keep the record.",
         priority="1.0",
-        schema=[APP_SCHEMA],
+        schema=[APP_SCHEMA, ORG_SCHEMA],
     ))
 
     # ------------------------------------------------------------ FEATURES
@@ -502,6 +502,24 @@ def build():
           <li><span class="tick">&#10003;</span><span>Unlimited jobs</span></li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="grid grid-2" style="align-items:center;gap:clamp(28px,4vw,64px)">
+      <div>
+        <h2>No surprises on the way in.</h2>
+        <p class="lede" style="margin-top:16px">The purchase screen states the price, the
+          period, the trial length and the auto-renewal terms above the fold — with Terms,
+          Privacy and Restore Purchases all one tap away. Nothing about the subscription is
+          buried, because nothing about it needs to be.</p>
+      </div>
+      <div class="phone" style="max-width:262px"><picture>
+        <source srcset="/assets/img/04-paywall.webp" type="image/webp">
+        <img src="/assets/img/04-paywall.jpg" width="860" height="1869" loading="lazy"
+             alt="The Tipfolio Pro purchase screen, showing plan prices, the free-trial length and the auto-renewal terms beneath the button."></picture></div>
     </div>
   </div>
 </section>

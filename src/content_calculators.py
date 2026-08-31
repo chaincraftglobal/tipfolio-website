@@ -47,26 +47,26 @@ def build():
     <div class="grid grid-2">
       <a class="link-card" href="/calculators/real-hourly-rate/">
         <span class="kicker">Most popular</span>
-        <h3>Real hourly rate calculator</h3>
+        <h2>Real hourly rate calculator</h2>
         <p>Tips minus tip-outs, plus your base wage, divided by the hours you actually
            worked. The one honest number about a shift — and usually not the one on the
            job ad.</p>
         <span class="more">Calculate →</span></a>
       <a class="link-card" href="/calculators/tip-out/">
         <span class="kicker">Every night</span>
-        <h3>Tip-out calculator</h3>
+        <h2>Tip-out calculator</h2>
         <p>Percent of tips, percent of sales, or a flat amount. Work out what goes to the
            bar, the busser and the runner — and what you actually keep.</p>
         <span class="more">Calculate →</span></a>
       <a class="link-card" href="/calculators/tip-tax-deduction/">
         <span class="kicker">Tax season</span>
-        <h3>Tip tax deduction estimator</h3>
+        <h2>Tip tax deduction estimator</h2>
         <p>See where your qualified tips land against the {TAX['cap_display']} annual cap
            for {TAX['years']}, and what that could be worth at your marginal rate.</p>
         <span class="more">Estimate →</span></a>
       <a class="link-card" href="/calculators/shift-earnings/">
         <span class="kicker">Week at a glance</span>
-        <h3>Shift earnings calculator</h3>
+        <h2>Shift earnings calculator</h2>
         <p>Add up a week of shifts with base wage and tip-outs handled properly, and see
            the blended rate across all of them.</p>
         <span class="more">Calculate →</span></a>
