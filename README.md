@@ -46,6 +46,24 @@ Then in the repo: **Settings → Pages → Source: Deploy from a branch → `mai
 
 The repo must be **public** for GitHub Pages on a free account.
 
+## Deploy to Vercel
+
+`vercel.json` at the repo root already points Vercel at `docs/`. Without it you
+get `404: NOT_FOUND`, because Vercel serves the repo root and there is no
+`index.html` there — the site is generated into `docs/`.
+
+If a project already exists and still 404s, the dashboard setting overrides the
+file: **Project → Settings → Build & Deployment → Root Directory → `docs`**, or
+leave Root Directory empty and let `outputDirectory` in `vercel.json` do it.
+Redeploy after changing it.
+
+⚠️ `trailingSlash: true` in `vercel.json` is load-bearing. The app ships
+`/terms/` and `/privacy/` **with** trailing slashes, and every canonical URL
+matches. Do not turn it off.
+
+`CNAME` and `.nojekyll` are GitHub Pages artefacts. Vercel ignores both, so they
+are harmless if you host here instead.
+
 DNS for `tipfolio.app`:
 
 | Type | Name | Value |
