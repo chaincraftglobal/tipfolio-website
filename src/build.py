@@ -27,18 +27,18 @@ SRC = ROOT / "src"
 # GitHub Pages serves this repo from /docs on the main branch, so the build
 # output has to land there. Everything in docs/ is generated except assets/.
 OUT = ROOT / "docs"
-# ⚠️ The canonical origin for this site. EVERY canonical tag, Open Graph URL,
-# sitemap entry and JSON-LD @id is built from it.
+# The canonical origin. EVERY canonical tag, Open Graph URL, sitemap entry and
+# JSON-LD @id is built from it.
 #
-# It was "https://tipfolio.app" — but that domain serves a DIFFERENT company's
-# product, also called TipFolio. Canonical tags pointing there tell Google the
-# authoritative copy of this content lives on a competitor's site, which is the
-# single most damaging thing a canonical can do. Until the domain question is
-# settled this points at the live deployment, so canonicals are self-referential.
+# www, not the apex: gettipfolio.app 308-redirects to www.gettipfolio.app on
+# Vercel, so canonicals pointing at the apex would each aim at a redirect rather
+# than at the page that actually serves.
 #
-# Change this one line when the real domain is confirmed, rebuild, and every
-# page follows. Keep CNAME_HOST in step.
-SITE = "https://tipfolio-website.vercel.app"
+# It was "https://tipfolio.app" until Aug 2026. That domain belongs to a
+# different company shipping a different product also called TipFolio, so every
+# canonical was telling Google the authoritative copy of this content lived on a
+# competitor's site. Do not point it back.
+SITE = "https://www.gettipfolio.app"
 CNAME_HOST = ""  # GitHub Pages only; leave empty while hosting on Vercel.
 
 # --------------------------------------------------------------------------
@@ -79,7 +79,7 @@ BRAND = {
     "name": "Tipfolio",
     "entity": "Lacewing Technologies LLC",
     "address": "30 N Gould St, Ste N, Sheridan, WY 82801, United States",
-    "email": "support@tipfolio.app",
+    "email": "support@gettipfolio.app",
     "price_monthly": "$3.99",
     "price_annual": "$29.99",
     "trial": "7-day free trial",
@@ -127,7 +127,7 @@ FOOTER = [
     ("Legal", [
         ("Privacy policy", "/privacy/"),
         ("Terms of service", "/terms/"),
-        ("Contact", "mailto:support@tipfolio.app"),
+        ("Contact", "mailto:support@gettipfolio.app"),
     ]),
 ]
 
@@ -304,7 +304,7 @@ ORG_SCHEMA = (
     '"logo":{"@type":"ImageObject","url":"%(site)s/assets/img/og-image.png",'
     '"width":1200,"height":630},'
     '"contactPoint":{"@type":"ContactPoint","contactType":"customer support",'
-    '"email":"support@tipfolio.app"},'
+    '"email":"support@gettipfolio.app"},'
     '"address":{"@type":"PostalAddress","streetAddress":"30 N Gould St, Ste N",'
     '"addressLocality":"Sheridan","addressRegion":"WY","postalCode":"82801",'
     '"addressCountry":"US"}},'
