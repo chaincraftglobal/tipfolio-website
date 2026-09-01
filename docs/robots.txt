@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tipfolio.app/sitemap.xml
+Sitemap: https://tipfolio-website.vercel.app/sitemap.xml

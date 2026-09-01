@@ -27,7 +27,19 @@ SRC = ROOT / "src"
 # GitHub Pages serves this repo from /docs on the main branch, so the build
 # output has to land there. Everything in docs/ is generated except assets/.
 OUT = ROOT / "docs"
-SITE = "https://tipfolio.app"
+# ⚠️ The canonical origin for this site. EVERY canonical tag, Open Graph URL,
+# sitemap entry and JSON-LD @id is built from it.
+#
+# It was "https://tipfolio.app" — but that domain serves a DIFFERENT company's
+# product, also called TipFolio. Canonical tags pointing there tell Google the
+# authoritative copy of this content lives on a competitor's site, which is the
+# single most damaging thing a canonical can do. Until the domain question is
+# settled this points at the live deployment, so canonicals are self-referential.
+#
+# Change this one line when the real domain is confirmed, rebuild, and every
+# page follows. Keep CNAME_HOST in step.
+SITE = "https://tipfolio-website.vercel.app"
+CNAME_HOST = ""  # GitHub Pages only; leave empty while hosting on Vercel.
 
 # --------------------------------------------------------------------------
 # Tax parameters — mirror of Tipfolio/Resources/AppConfig.swift `enum Tax`.
@@ -444,7 +456,10 @@ def write_sitemap():
         f"{urls}</urlset>\n", encoding="utf-8")
     (OUT / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
-    (OUT / "CNAME").write_text("tipfolio.app\n", encoding="utf-8")
+    if CNAME_HOST:
+        (OUT / "CNAME").write_text(CNAME_HOST + "\n", encoding="utf-8")
+    elif (OUT / "CNAME").exists():
+        (OUT / "CNAME").unlink()
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
 
 
