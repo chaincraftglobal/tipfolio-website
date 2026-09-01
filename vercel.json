@@ -1,16 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-
-  "//": "The site is generated into docs/ (a GitHub Pages convention). Vercel serves the repo root by default, which holds no index.html - that is what produces NOT_FOUND. This points it at the right directory.",
   "buildCommand": null,
   "installCommand": null,
   "outputDirectory": "docs",
-
-  "//trailingSlash": "Load-bearing. The iPhone app ships https://tipfolio.app/terms/ and /privacy/ WITH trailing slashes in LegalLinks, and every canonical URL on the site matches. Without this, /terms would 404 or redirect through a non-canonical URL that App Review follows.",
   "trailingSlash": true,
-
   "cleanUrls": false,
-
   "headers": [
     {
       "source": "/assets/(.*)",

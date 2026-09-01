@@ -149,3 +149,19 @@ add(Page(
 
 It is picked up by the sitemap automatically. Link to it from somewhere — the
 build does not check for orphans, but an unlinked page will not rank.
+
+## Deployment notes (`vercel.json`)
+
+Vercel validates `vercel.json` against a strict schema that rejects any unknown key —
+including `"//"`-style comment keys. The rationale that used to live inline is kept here instead:
+
+- **`outputDirectory: "docs"`** — the site is generated into `docs/` (a GitHub Pages convention).
+  Vercel serves the repo root by default, which holds no `index.html`; that is what produced the
+  `NOT_FOUND` error. This points the deploy at the right directory.
+- **`trailingSlash: true`** — load-bearing. The iPhone app ships `https://tipfolio.app/terms/`
+  and `/privacy/` **with** trailing slashes in `LegalLinks`, and every canonical URL on the site
+  matches. Without this, `/terms` would 404 or redirect through a non-canonical URL that
+  App Review follows.
+- **`cleanUrls: false`** — keeps the explicit `.html`/directory URLs the generated site already uses.
+
+Do not add comment keys back to `vercel.json`; the build will fail schema validation.
